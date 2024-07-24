@@ -1,7 +1,7 @@
 ## The task at hands
 Suppose you have the following task: there are two particles on a L by L, square lattice, they can interact in three ways (particles are located in the vertices of the lattice):
 - if the distance is 1 (particles on the edge of the square), the energy of interaction is -5 (in arbitrary energy units)
-- if the distance is $\sqrt(2)$, the energy of intercation is -3.5
+- if the distance is $$\sqrt(2)$$ the energy of interaction is -3.5
 - otherwise, the interaction energy is zero
 
 ![Lattice with two particles](particle_tango/lattice.png)
@@ -19,9 +19,9 @@ The most obvious way - save all of the coordinates of all of the N particles in 
 
 You can now do the same thing to the momenta of N particles. Since we have three components to it, $p_x, p_y, p_z$ , this also gets us a 3N-dimensional space.
 
-You can also combine these spaces and get a 6N-dimensional **phase** space (3N coordinates $x_i, y_i,z_i$, and 3N momenta $p_x, p_y, p_z$). But what's for us in it? Every point in this space represents coordinates and momenta (velocity) of all of the particles at some point in time. We can now apply Newtonian mechanics to it and "let it go" - it will evolve in time accroding to any logic for velocity and coordinate change we put into it.
+You can also combine these spaces and get a 6N-dimensional **phase** space (3N coordinates $x_i, y_i,z_i$, and 3N momenta $p_x, p_y, p_z$). But what's for us in it? Every point in this space represents coordinates and momenta (velocity) of all of the particles at some point in time. We can now apply Newtonian mechanics to it and "let it go" - it will evolve in time according to any logic for velocity and coordinate change we put into it.
 
-Okay, now we have a point in this phase space. Let's call it a *micro*state - after all, it's an arrangement of particless that happens on a molecular level. How can we get to the *macro*state - something we can see and measure? We could average over tons of microstates. This set of states is called a **statistical ensemble**.
+Okay, now we have a point in this phase space. Let's call it a *micro*state - after all, it's an arrangement of particles that happens on a molecular level. How can we get to the *macro*state - something we can see and measure? We could average over tons of microstates. This set of states is called a **statistical ensemble**.
 #### Calculation of properties
 Now, when we average properties over the ensemble, we are faced with the nature's heartless bitchiness. Only the simplest systems are averaged over easily. For others you often get some integrals over the functions which exact form is unknown...
 
@@ -44,21 +44,21 @@ We will use the Metropolis-Hastings algorithm to generate and sample new states.
 	- if $u \leq k$ - accept the new state as old state (make a step)
 	- otherwise, stay in the old state
 7. Repeat stuff.
-This awesome algorithm works because we stay in the lower-energy states more than in higher-energy states, which should reptresent our ensemble nicely after averaging along the "trajectory".
+This awesome algorithm works because we stay in the lower-energy states more than in higher-energy states, which should represent our ensemble nicely after averaging along the "trajectory".
 ## Results
 I won't bother you with the code here, just a couple of things that I thought looked nicely.
 ### Energy-distance relation
 First, let's look at the distances and how it relates to the energy of the system. Here we have a two-particle system on a 10x10 lattice with 10000 steps of MC algorithm.
 
-![[classic 0.5.png]]
+![classic 0.5.png](particle_tango/classic%200.5.png)
 
-On the energy graph, there are three distinct cases: energy is either zero, -3.5 or -5. If we now look at the distance we will see our formulation of the task - each minimum in energy corersponds to the distance = 1, each -3.5 peak corresponds to the diagonal position. All zero-energy states correspond to every other distance.
+On the energy graph, there are three distinct cases: energy is either zero, -3.5 or -5. If we now look at the distance we will see our formulation of the task - each minimum in energy corresponds to the distance = 1, each -3.5 peak corresponds to the diagonal position. All zero-energy states correspond to every other distance.
 
 ### It's getting hot in here!
 
 Let's heat the system up! We will now increase the temperature and look at the distance graph (yeah it's a bit funky).
 
-![[classic 5 temps.png]]
+![classic 5 temps.png](particle_tango/classic%205%20temps.png)
 
 When the temperature of the system is very low, particles get "stuck" in the lowest-energy position - so to say, they don't have enough energy to jump from place to place. Should we start increasing the temperature, we change the exponent in the decision coefficient and make transitions from lower-energy states to higher-energy states more probable and favorable. As a result, the average distance increases. Particles "go crazy" and start running around. 
 
@@ -71,39 +71,39 @@ The interesting thing can happen at the low-temperature states such as $T=0.7$ .
 
 ## Other potentials
 
-From here we can go anywhere we want. We can add other potentials: Lennard-Jones, Coulomb, Morse and so on. (I have currently implemented only LJ and C potenitals)
+From here we can go anywhere we want. We can add other potentials: Lennard-Jones, Coulomb, Morse and so on. (I have currently implemented only LJ and C potentials)
 ### Lennard-Jones
 
 This is the most famous potential to simulate the behavoiur of the molecules.
 $$E(r) = 4\varepsilon \left((\frac{\sigma}{r})^{12}-(\frac{\sigma}{r})^{6} \right)$$
 Here $\sigma$ is the distance where the potential is equal to zero (set so that $r_{min}=2^{1/6}\sigma=1$) and $\varepsilon$ is the depth of the potenial well ($\varepsilon=5$, same as our "classic" potential at $r=1$).
 
-![[LJ 5 temps.png]]
+![LJ 5 temps.png](particle_tango/LJ%205%20temps.png)
 
 The general picture is pretty much the same, however we no longer see a lot of "stubs" from diagonal configuration where the distance is $\sqrt(2)$. We used to have energy = -3.5 in that position, but this value is smaller for LJ potential.
 
 ### Coulomb potential
 
-Simple attractive potential if we set the charges to be 1 and -1 for our particle (and again, the constant k is dimetionless!)
+Simple attractive potential if we set the charges to be 1 and -1 for our particle (and again, the constant k is dimensionless!)
 $$E(r) =k\cdot\frac{q_1q_2}{r}= -\frac{1}{r}$$
 Again, let's work in dimensionless units.
 
-![[coulomb 5 temps attract.png]]
+![coulomb 5 temps attract.png](particle_tango/coulomb%205%20temps%20attract.png)
 
-Now our temeratures are "too hot" to see the different states, but what we see is that the average distance skyrockets in comparison to our original potential and LJ. I don't have any fun explanation at hand. It probably has something to do with the way the potentials behave over the distance.
+Now our temperatures are "too hot" to see the different states, but what we see is that the average distance skyrockets in comparison to our original potential and LJ. I don't have any fun explanation at hand. It probably has something to do with the way the potentials behave over the distance.
 
-![[potentials 1.png]]
+![potentials 1.png](particle_tango/potentials.png)
 
 Sooo, that's probably it. The Coulomb potential is very shallow, so it responds to the temperature rise very quickly. Lennard-Jones potential is way less deep than our "classic" one at $r=\sqrt(2)$. 
 
 Now, I'm curious: what would happened if we changed the potential to be repulsive? My prediction is that the average distance will behave backwards - start from high value and then drop down as we go.
 
-![[coulomb 5 temps repuls 1.png]]
+![coulomb 5 temps repuls 1.png](particle_tango/coulomb%205%20temps%20repuls.png)
 
 Yep. That's exactly what's happening. Heating up the system brings charges closer, but the repulsive forces are very strong.
 ## Conclusion
 
-This is a fun little excersise that hides lots of interesting math, physics and coding questions. In theory, by expanding this scheme you could describe larger systems and get some insight into their behaviour. If you know the potentials (and have a big enough computer), sky's the limit.
+This is a fun little exercise that hides lots of interesting math, physics and coding questions. In theory, by expanding this scheme you could describe larger systems and get some insight into their behavior. If you know the potentials (and have a big enough computer), sky's the limit.
 
 The code can be found here: https://github.com/Onelightayear/2D-lattice-MC.git
 
@@ -114,7 +114,7 @@ $$\braket{A}=\int A\cdot p(x)dx$$
 where x is a general variable. This formula is a continuos definition of an average of the data. If you have some discrete points $A_i$ each weighing $p_i$, you get this:
 $$\braket{A}=\frac{\sum_i A_i\cdot p_i}{\sum_i p_i}$$
 And the last formula is exactly what we need in our case. If we take Boltzmann formulation of the statistical weight, we get that $$p_i = exp({-(E_i-E_{min})/k_BT})=exp({-(E_i-E_{min})/T})$$
-Actually it is the formula I doubt the most, but the general results I get by using it correlate with the behaviour of the system that I see and it doesn't show anything inadequate about it.
+Actually it is the formula I doubt the most, but the general results I get by using it correlate with the behavior of the system that I see and it doesn't show anything inadequate about it.
 
 Now for any property of the system we can get it's average:
 $$\braket{A}=\frac{\sum_iA_i\cdot exp({-(E_i-E_{min})/k_BT})}{\sum_i exp({-(E_i-E_{min})/k_BT})}$$
