@@ -105,7 +105,7 @@ Yep. That's exactly what's happening. Heating up the system brings charges close
 
 This is a fun little exercise that hides lots of interesting math, physics and coding questions. In theory, by expanding this scheme you could describe larger systems and get some insight into their behavior. If you know the potentials (and have a big enough computer), sky's the limit.
 
-The code can be found here: https://github.com/Onelightayear/2D-lattice-MC.git
+The code can be found here: [https://github.com/Onelightayear/2D-lattice-MC.git](https://github.com/Onelightayear/2D-lattice-MC.git)
 
 ## Addendum 1 : calculation of averages
 
