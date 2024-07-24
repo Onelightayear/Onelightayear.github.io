@@ -1,6 +1,3 @@
-layout: page
-title: "Particle tango"
-permalink: /particle_tango
 ## The task at hands
 Suppose you have the following task: there are two particles on a L by L, square lattice, they can interact in three ways (particles are located in the vertices of the lattice):
 - if the distance is 1 (particles on the edge of the square), the energy of interaction is -5 (in arbitrary energy units)
@@ -108,7 +105,7 @@ Yep. That's exactly what's happening. Heating up the system brings charges close
 
 This is a fun little exercise that hides lots of interesting math, physics and coding questions. In theory, by expanding this scheme you could describe larger systems and get some insight into their behavior. If you know the potentials (and have a big enough computer), sky's the limit.
 
-The code can be found here: https://github.com/Onelightayear/2D-lattice-MC.git
+The code can be found here: [https://github.com/Onelightayear/2D-lattice-MC.git](https://github.com/Onelightayear/2D-lattice-MC.git)
 
 ## Addendum 1 : calculation of averages
 
