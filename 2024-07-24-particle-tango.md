@@ -1,7 +1,6 @@
-layout: post
+layout: page
 title: "Particle tango"
-date: 2024-07-24 hh:mm:ss -0000
-categories: physics chemistry
+permalink: /particle_tango
 ## The task at hands
 Suppose you have the following task: there are two particles on a L by L, square lattice, they can interact in three ways (particles are located in the vertices of the lattice):
 - if the distance is 1 (particles on the edge of the square), the energy of interaction is -5 (in arbitrary energy units)
