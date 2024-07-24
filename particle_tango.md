@@ -4,7 +4,7 @@ Suppose you have the following task: there are two particles on a L by L, square
 - if the distance is $\sqrt(2)$, the energy of intercation is -3.5
 - otherwise, the interaction energy is zero
 
-![[lattice 1.png]]
+![Lattice with two particles](particle_tango/lattice.png)
 
 What are the properties of such system? How would you evaluate the average energy of the system, average the distance between particles? And how would all this stuff be affected by changes in temperature?
 ## Solutions
